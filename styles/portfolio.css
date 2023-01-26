@@ -1,0 +1,99 @@
+.portfolioContainer {
+    margin-top: 23vh;
+    /* background-color: white; */
+}
+
+.portfolioCards {
+    background-position: center;
+    background-size: cover;
+    /* height: 25vh !important; */
+}
+
+.imgheight {
+    height: 25vh !important;
+}
+
+.portCard {
+    height: 50vh;
+    background-color: rgba(54, 55, 58, 0.5);
+    /* background-color: rgba(74, 99, 80, 0.598); */
+    /* color: rgba(255, 255, 255, 0.9); */
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 2px 4px 10px hsla(0, 0%, 0%, .3),
+    2px 4px 20px hsla(0, 0%, 0%, .2);
+}
+
+.portfolioIframe {
+    height: 30vh;
+    /* width: 100%; */
+}
+
+
+.tic-tac-toe {
+    background-image: url('./images/tic-tac-toe.png');
+    /* height: 30vh !important; */
+}
+
+.mind-reader {
+    background-image: url('./images/mind-reader.png');
+}
+
+.alarm-clock {
+    background-image: url('./images/alarm-clock.png');
+}
+
+.scary-story-generator {
+    background-image: url('./images/scary-story-generator.png');
+}
+
+.thundercat {
+    background-image: url('./images/thundercat.png');
+}
+
+.weather-app {
+    background-image: url('./images/weather-app.png');
+}
+
+.to-do-list {
+    background-image: url('./images/to-do-list.png');
+}
+
+.secret-sauce {
+    background-image: url('./images/secret-sauce.png');
+
+}
+
+.chatr {
+    background-image: url('./images/chatr.png');
+}
+
+.cardHeight{
+    height: 40vh !important;
+}
+
+
+.icons {
+    height: 5vh;
+}
+
+.description {
+    height: 15vh;
+    /* box-shadow: black; */
+    overflow-y: scroll; 
+}
+
+
+@media screen and (max-width: 600px) {
+    .portCard {
+        height: 77vh;
+        width: 93vw !important;
+    }
+    .cardHeight{
+        height: 27vh !important;
+    }
+}
+
+
+
+
