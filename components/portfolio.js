@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 // import './Portfolio.css'
 import HTML from '../styles/images/stackIcons/html.png';
 import JavaScript from '../styles/images/stackIcons/java-script.png';
@@ -8,6 +8,7 @@ import Python from '../styles/images/stackIcons/python.png';
 import Postgres from '../styles/images/stackIcons/postgres.png';
 import Bootstrap from '../styles/images/stackIcons/bootstrap.svg';
 import django from '../styles/images/stackIcons/django.png';
+import Image from 'next/image';
 
 
 let count = 0 // Counter for project card mapping
@@ -27,12 +28,6 @@ function IFrameCard(props) {
                                 <a href={props.link}><button className="btn btn-secondary">View project</button></a>
                             </li>
 
-                            {/* <li className="d-flex align-items-center">
-                                <svg className="bi me-2" width="1em" height="1em">
-                                    <use xlink:href="#calendar3"></use>
-                                </svg>
-                                <small>10/07/22</small>
-                            </li> */}
                         </ul>
                     </iframe>
                 </div>
@@ -41,20 +36,20 @@ function IFrameCard(props) {
     )
 };
 
-function ProjectImage(props){
+function ProjectImage(props) {
     const baseClasses = 'card portfolioCards cardHeight card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg'
     const project = props.project
     return (
         <div className="col-sm-12 col-md-5 col-lg-5 imgheight m-3">
-                        <div className={`${baseClasses + ' ' + project.class}`}>
+            <div className={`${baseClasses + ' ' + project.class}`}>
 
-                        </div>
-                    </div>
+            </div>
+        </div>
     )
 }
 
-function ProjectInfo(props){
-    
+function ProjectInfo(props) {
+
     const project = props.project
     return (
         <div className="col d-flex justify-content-center container">
@@ -70,14 +65,18 @@ function ProjectInfo(props){
                         <a href={project.link} target='blank_'><button className="btn btn-secondary m-2">View live project</button></a>
 
                     }
-                        
+
                     <a href={project.source} target='blank_'><button className="btn btn-secondary m-2">View source code</button></a>
                 </div>
                 <div className="col-12">
 
-                    {project.stack.map((item) =>  (
-                            <img key={props.key} title={item.name} className='icons m-1' src={item.icon} alt={item.name}></img>
-                        )
+                    {project.stack.map((item) => {
+                        console.log(item)
+                    return (
+                        // <img key={props.key} title={item.name} className='icons m-1' src={item.icon} alt={item.name}/>
+                        <Image width='auto' height='auto' key={props.key} title={item.name} className='icons m-1' src={item.icon} alt={item.name}/>
+                    )
+                    }
                     )}
                 </div>
             </div>
@@ -87,111 +86,149 @@ function ProjectInfo(props){
 
 
 function PortfolioCard(props) {
+    const [width, setWidth] = useState(0)
+    console.log(width)
 
     // const baseClasses = 'card portfolioCards h-100 w-100 card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg'
     const project = props.project
     // console.log(props.count)
-    var x = window.matchMedia("(max-width: 700px)")
-    window.addEventListener("resize", () => {
-        if (x.matches) {
-            (console.log('Small screen size: If you are seeing this, It is because I have not yet optimized the page layout for starting at desktop size then resizing to mobile size. Please reload the window at this sizing to see my intended output'))
+    // var x = window.matchMedia("(max-width: 700px)")
+    // window.innerWidth.addEventListener("resize", () => {
+    //     if (x.matches) {
+    //         (console.log('Small screen size: If you are seeing this, It is because I have not yet optimized the page layout for starting at desktop size then resizing to mobile size. Please reload the window at this sizing to see my intended output'))
+    //     }
+    // });
+    const size = useWindowSize();
+
+// console.log(size)
+// Hook
+function useWindowSize() {
+    // const [windowSize, setWindowSize] = useState({
+    //     width: undefined,
+    //     height: undefined,
+    // });
+    // console.log(windowSize.width)
+    // setWidth(windowSize.width)
+    // Initialize state with undefined width/height so server and client renders match
+    // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+    useEffect(() => {
+        // only execute all the code below in client side
+        // Handler to call on window resize
+        function handleResize() {
+            // Set window width/height to state
+            setWidth(
+                window.innerWidth
+            );
         }
-    });
 
+        // Add event listener
+        window.addEventListener("resize", handleResize);
 
-    // console.log(props.count, props.project)
-    if (props.count % 2 !== 0 && !x.matches) {
-        // return (
-        //     <div className="col-sm-12 col-lg-10 portCard m-3">
-        //         <div className="row h-100 bg-secondary rounded bg-opacity-25">
-        //             {/* <div className="col d-flex justify-content-center container">
-        //                 <div className="row text-center">
-        //                     <div className="col-12">
-        //                         <h1 className='headFont'>{project.name}</h1>
-        //                     </div>
-        //                     <div className="col-12">
-        //                         <div>{project.description}</div>
-        //                     </div>
-        //                     <div className="col-12">
-        //                         <a href={project.link}><button className="btn btn-secondary m-2">View live project</button></a>
-        //                         <a href={project.source}><button className="btn btn-secondary m-2">View source code</button></a>
-        //                     </div>
-        //                     <div className="col-12">
+        // Call handler right away so state gets updated with initial window size
+        handleResize();
 
-        //                         {project.stack.map((item) =>  (
-        //                                 <img title={item.name} className='icons m-1' src={item.icon} alt={item.name}></img>
-        //                             )
-        //                         )}
-        //                     </div>
-        //                 </div>
-        //             </div> */}
-        //             {/* <div className="col-sm-12 col-md-5 col-lg-5 m-3">
-        //                 <div className={`${baseClasses + ' ' + project.class}`}>
+        // Remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize);
+    }, []); // Empty array ensures that effect is only run on mount
+    return width;
+}
 
-        //                 </div>
-        //             </div> */}
+// let x = windowSize
 
-        //         </div>
-        //     </div>
-        // )
-        return (
-            <div className="col-sm-12 col-lg-10 portCard m-3">
-                <div className="row d-flex justify-content-center mt-4">
-                    <ProjectInfo project={project} />
-                    <ProjectImage project={project} />
-                </div>
+// console.log(props.count, props.project)
+if (props.count % 2 !== 0 && width > 700) {
+    console.log('triggered')
+    // return (
+    //     <div className="col-sm-12 col-lg-10 portCard m-3">
+    //         <div className="row h-100 bg-secondary rounded bg-opacity-25">
+    //             {/* <div className="col d-flex justify-content-center container">
+    //                 <div className="row text-center">
+    //                     <div className="col-12">
+    //                         <h1 className='headFont'>{project.name}</h1>
+    //                     </div>
+    //                     <div className="col-12">
+    //                         <div>{project.description}</div>
+    //                     </div>
+    //                     <div className="col-12">
+    //                         <a href={project.link}><button className="btn btn-secondary m-2">View live project</button></a>
+    //                         <a href={project.source}><button className="btn btn-secondary m-2">View source code</button></a>
+    //                     </div>
+    //                     <div className="col-12">
+
+    //                         {project.stack.map((item) =>  (
+    //                                 <img title={item.name} className='icons m-1' src={item.icon} alt={item.name}></img>
+    //                             )
+    //                         )}
+    //                     </div>
+    //                 </div>
+    //             </div> */}
+    //             {/* <div className="col-sm-12 col-md-5 col-lg-5 m-3">
+    //                 <div className={`${baseClasses + ' ' + project.class}`}>
+
+    //                 </div>
+    //             </div> */}
+
+    //         </div>
+    //     </div>
+    // )
+    return (
+        <div className="col-sm-12 col-lg-10 portCard m-3">
+            <div className="row d-flex justify-content-center mt-4">
+                <ProjectInfo project={project} />
+                <ProjectImage project={project} />
             </div>
+        </div>
 
-        )
-    } else {
-        // return (
-        //     <div className="col-sm-12 col-lg-10 portCard m-3">
-        //         <div className="row h-100 bg-secondary rounded bg-opacity-25">
-        //             <div className="col-sm-12 col-md-5 col-lg-5 m-3">
-        //                 <div className={`${baseClasses + ' ' + project.class}`}>
-        //                     {/* <div className="d-flex flex-column text-white text-shadow-1">
+    )
+} else {
+    // return (
+    //     <div className="col-sm-12 col-lg-10 portCard m-3">
+    //         <div className="row h-100 bg-secondary rounded bg-opacity-25">
+    //             <div className="col-sm-12 col-md-5 col-lg-5 m-3">
+    //                 <div className={`${baseClasses + ' ' + project.class}`}>
+    //                     {/* <div className="d-flex flex-column text-white text-shadow-1">
 
-        //                     <ul className="d-flex list-unstyled mt-auto">
-        //                         <li className="me-auto">
-        //                             <a href={project.link}><button className="btn btn-secondary">View project</button></a>
-        //                         </li>
-        //                     </ul>
-        //                 </div> */}
-        //                 </div>
-        //             </div>
-        //             <div className="col d-flex justify-content-center container">
-        //                 <div className="row text-center">
-        //                     <div className="col-12">
-        //                         <h1 className='headFont'>{project.name}</h1>
-        //                     </div>
-        //                     <div className="col-12">
-        //                         <div>{project.description}</div>
-        //                     </div>
-        //                     <div className="col-12">
-        //                         <a href={project.link}><button className="btn btn-secondary m-2">View live project</button></a>
-        //                         <a href={project.source}><button className="btn btn-secondary m-2">View source code</button></a>
-        //                     </div>
-        //                     <div className="col-12">
+    //                     <ul className="d-flex list-unstyled mt-auto">
+    //                         <li className="me-auto">
+    //                             <a href={project.link}><button className="btn btn-secondary">View project</button></a>
+    //                         </li>
+    //                     </ul>
+    //                 </div> */}
+    //                 </div>
+    //             </div>
+    //             <div className="col d-flex justify-content-center container">
+    //                 <div className="row text-center">
+    //                     <div className="col-12">
+    //                         <h1 className='headFont'>{project.name}</h1>
+    //                     </div>
+    //                     <div className="col-12">
+    //                         <div>{project.description}</div>
+    //                     </div>
+    //                     <div className="col-12">
+    //                         <a href={project.link}><button className="btn btn-secondary m-2">View live project</button></a>
+    //                         <a href={project.source}><button className="btn btn-secondary m-2">View source code</button></a>
+    //                     </div>
+    //                     <div className="col-12">
 
-        //                         {project.stack.map((item) =>  (
-        //                                 <img title={item.name} className='icons m-1' src={item.icon} alt={item.name}></img>
-        //                             )
-        //                         )}
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // )
-        return (
-            <div className="col-sm-12 col-lg-10 portCard m-3">
-                <div className="row d-flex justify-content-center mt-4">
-                    <ProjectImage project={project} />
-                    <ProjectInfo project={project} />
-                </div>
+    //                         {project.stack.map((item) =>  (
+    //                                 <img title={item.name} className='icons m-1' src={item.icon} alt={item.name}></img>
+    //                             )
+    //                         )}
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     </div>
+    // )
+    return (
+        <div className="col-sm-12 col-lg-10 portCard m-3">
+            <div className="row d-flex justify-content-center mt-4">
+                <ProjectImage project={project} />
+                <ProjectInfo project={project} />
             </div>
-        )
-    }
+        </div>
+    )
+}
 
 
 };
@@ -211,7 +248,7 @@ const projects = [ // Project data
             },
             {
                 icon: django,
-                name: 'django' 
+                name: 'django'
             },
             {
                 icon: Python,
@@ -228,7 +265,7 @@ const projects = [ // Project data
             {
                 icon: Bootstrap,
                 name: 'Bootstrap'
-            },  
+            },
             {
                 icon: CSS,
                 name: 'CSS'
@@ -245,15 +282,15 @@ const projects = [ // Project data
             {
                 icon: ReactJS,
                 name: 'ReactJS'
-            }, 
+            },
             {
                 icon: JavaScript,
                 name: 'JavaScript'
-            }, 
+            },
             {
                 icon: Bootstrap,
                 name: 'Bootstrap'
-            }, 
+            },
             {
                 icon: CSS,
                 name: 'CSS'
@@ -270,14 +307,14 @@ const projects = [ // Project data
             {
                 icon: ReactJS,
                 name: 'ReactJS'
-            }, 
+            },
             {
                 icon: Python,
                 name: 'Python'
             },
             {
                 icon: django,
-                name: 'django' 
+                name: 'django'
             },
             {
                 icon: Postgres,
@@ -290,7 +327,7 @@ const projects = [ // Project data
             {
                 icon: Bootstrap,
                 name: 'Bootstrap'
-            },  
+            },
             {
                 icon: CSS,
                 name: 'CSS'
@@ -307,7 +344,7 @@ const projects = [ // Project data
             {
                 icon: HTML,
                 name: 'HTML'
-            }, 
+            },
             {
                 icon: JavaScript,
                 name: 'JavaScript'
@@ -315,7 +352,7 @@ const projects = [ // Project data
             {
                 icon: Bootstrap,
                 name: 'Bootstrap'
-            },  
+            },
             {
                 icon: CSS,
                 name: 'CSS'
@@ -332,7 +369,7 @@ const projects = [ // Project data
             {
                 icon: HTML,
                 name: 'HTML'
-            }, 
+            },
             {
                 icon: JavaScript,
                 name: 'JavaScript'
@@ -340,7 +377,7 @@ const projects = [ // Project data
             {
                 icon: Bootstrap,
                 name: 'Bootstrap'
-            },  
+            },
             {
                 icon: CSS,
                 name: 'CSS'
@@ -357,11 +394,11 @@ const projects = [ // Project data
             {
                 icon: HTML,
                 name: 'HTML'
-            }, 
+            },
             {
                 icon: JavaScript,
                 name: 'JavaScript'
-            }, 
+            },
             {
                 icon: CSS,
                 name: 'CSS'
@@ -378,11 +415,11 @@ const projects = [ // Project data
             {
                 icon: HTML,
                 name: 'HTML'
-            }, 
+            },
             {
                 icon: JavaScript,
                 name: 'JavaScript'
-            }, 
+            },
             {
                 icon: CSS,
                 name: 'CSS'
@@ -399,11 +436,11 @@ const projects = [ // Project data
             {
                 icon: HTML,
                 name: 'HTML'
-            }, 
+            },
             {
                 icon: JavaScript,
                 name: 'JavaScript'
-            }, 
+            },
             {
                 icon: CSS,
                 name: 'CSS'
