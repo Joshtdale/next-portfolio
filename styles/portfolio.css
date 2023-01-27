@@ -74,8 +74,10 @@
 
 
 .icons {
-    height: 5vh;
-    width: auto;
+    height: auto;
+    width: 5vw;
+    max-width: 40px;
+    min-width: 35px;
 }
 
 .description {
