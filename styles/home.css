@@ -1,0 +1,43 @@
+.jumbotron {
+    background-image: url(./images/smoke.jpg);
+    height: 100vh;
+    opacity: 0.9;
+    position: relative;
+    min-height: 500px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+}
+
+.heroText {
+    position: absolute;
+}
+
+
+.bioText {
+    margin-top: 40vh !important;
+    margin-left: 20vw;
+}
+
+@media screen and (max-width: 600px) {
+    .jumbotron {
+        display: flex;
+        justify-content: center;
+    }
+    .bioText {
+        margin-left: 5vw;
+        width: 100vw !important;
+        margin-left: 0;
+        margin: 10px;
+
+    }
+}
+
+
+.home-bottom {
+    height: 50vh;
+    background-color: rgb(74, 99, 80);
+    /* z-index: 2; */
+}
