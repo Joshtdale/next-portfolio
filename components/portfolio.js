@@ -172,7 +172,7 @@ if (props.count % 2 !== 0 && width > 700) {
     //     </div>
     // )
     return (
-        <div className="col-12 portCard m-3">
+        <div className="col-12 portColor2 portCard">
             <div className="row d-flex justify-content-center mt-4">
                 <ProjectInfo project={project} />
                 <ProjectImage project={project} />
@@ -221,7 +221,7 @@ if (props.count % 2 !== 0 && width > 700) {
     //     </div>
     // )
     return (
-        <div className="col-sm-12 col-lg-10 portCard m-3">
+        <div className="col-12 portColor1 portCard">
             <div className="row d-flex justify-content-center mt-4">
                 <ProjectImage project={project} />
                 <ProjectInfo project={project} />

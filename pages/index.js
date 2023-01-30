@@ -27,7 +27,7 @@ export default function Home() {
                                 degree in Media Communications from Asbury University to create a 
                                 synergy in technical skills and people. Five years in the coffee industry 
                                 working in customer service, wholesale, cafe management, and employee training.</div>
-                                <a href='#/blog' className="btn text-light" role="button">Read my blog »</a>
+                                <a href='blog' className="btn text-light" role="button">Read my blog »</a>
                             </div>
                         </div>
                     </div>

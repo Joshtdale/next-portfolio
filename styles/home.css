@@ -1,7 +1,7 @@
 .jumbotron {
     background-image: url(./images/smoke.jpg);
     height: 100vh;
-    opacity: 0.9;
+    /* opacity: 0.9; */
     position: relative;
     min-height: 500px;
     background-attachment: fixed;
