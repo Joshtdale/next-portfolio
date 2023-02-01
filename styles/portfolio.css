@@ -84,6 +84,8 @@
 
 
 .icons {
+    filter: invert(100%);
+    opacity: 0.8;
     height: auto;
     width: 5vw;
     max-width: 40px;
