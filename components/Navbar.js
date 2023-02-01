@@ -1,4 +1,4 @@
-// import '../styles/navbar.css'
+// import '/workspace/next-portfolio/styles/globals.css'
 // import bootstrap from 'bootstrap'
 import Link from "next/link"
 
@@ -24,11 +24,11 @@ function Navbar(props) {
                                 Portfolio
                             </button></Link>
                         </li>
-                        <li className='nav-item'>
+                        {/* <li className='nav-item'>
                         <a href='blog'><button className="btn px-2 text-white mt-1">
                                 Blog
                             </button></a>
-                        </li>
+                        </li> */}
                         <li className='nav-item'>
                         <a href='contact'><button className="btn px-2 text-white mt-1">
                                 Contact

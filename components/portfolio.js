@@ -13,29 +13,10 @@ import { motion } from 'framer-motion';
 
 
 let count = 0 // Counter for project card mapping
+// Variables for framer-motion animations
+let buttonWhileHover = { opacity: 1, scale: 1.1 }
+let buttonWhileTap = { scale: 0.9 }
 
-// function IFrameCard(props) {
-
-//     const baseClasses = 'card portfolioCards card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg'
-
-//     return (
-//         <div className="col portCard">
-//             <div className={`${baseClasses}`}>
-//                 <div className="d-flex flex-column text-white text-shadow-1">
-//                     <iframe className="embed-responsive-item portfolioIframe" src={props.link}>
-
-//                         <ul className="d-flex list-unstyled mt-auto">
-//                             <li className="me-auto">
-//                                 <a href={props.link}><button className="btn btn-secondary">View project</button></a>
-//                             </li>
-
-//                         </ul>
-//                     </iframe>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// };
 
 function ProjectImage(props) {
     const baseClasses = 'card portfolioCards cardHeight card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg'
@@ -63,20 +44,31 @@ function ProjectInfo(props) {
                 </div>
                 <div className="col-12">
                     {project.link &&
-                        <a href={project.link} target='blank_'><button className="btn portfolioBtn m-2">View live project</button></a>
+                        <a href={project.link} target='blank_'><motion.button
+                        whileHover={buttonWhileHover}
+                        whileTap={buttonWhileTap} 
+                        className="btn portfolioBtn m-2">View live project
+                        </motion.button>
+                        </a>
 
                     }
 
-                    <a href={project.source} target='blank_'><button className="btn portfolioBtn m-2">View source code</button></a>
+                    <a href={project.source} target='blank_'>
+                        <motion.button
+                        whileHover={buttonWhileHover}
+                        whileTap={buttonWhileTap} 
+                        className="btn portfolioBtn m-2">View source code
+                        </motion.button>
+                        </a>
                 </div>
                 <div className="col-12">
 
                     {project.stack.map((item) => {
                         console.log(item)
-                    return (
-                        // <img key={props.key} title={item.name} className='icons m-1' src={item.icon} alt={item.name}/>
-                        <Image width='auto' height='auto' key={props.key} title={item.name} className='icons m-1' src={item.icon} alt={item.name}/>
-                    )
+                        return (
+                            // <img key={props.key} title={item.name} className='icons m-1' src={item.icon} alt={item.name}/>
+                            <Image width='auto' height='auto' key={props.key} title={item.name} className='icons m-1' src={item.icon} alt={item.name} />
+                        )
                     }
                     )}
                 </div>
@@ -101,135 +93,135 @@ function PortfolioCard(props) {
     // });
     const size = useWindowSize();
 
-// console.log(size)
-// Hook
-function useWindowSize() {
-    // const [windowSize, setWindowSize] = useState({
-    //     width: undefined,
-    //     height: undefined,
-    // });
-    // console.log(windowSize.width)
-    // setWidth(windowSize.width)
-    // Initialize state with undefined width/height so server and client renders match
-    // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-    useEffect(() => {
-        // only execute all the code below in client side
-        // Handler to call on window resize
-        function handleResize() {
-            // Set window width/height to state
-            setWidth(
-                window.innerWidth
-            );
-        }
+    // console.log(size)
+    // Hook
+    function useWindowSize() {
+        // const [windowSize, setWindowSize] = useState({
+        //     width: undefined,
+        //     height: undefined,
+        // });
+        // console.log(windowSize.width)
+        // setWidth(windowSize.width)
+        // Initialize state with undefined width/height so server and client renders match
+        // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+        useEffect(() => {
+            // only execute all the code below in client side
+            // Handler to call on window resize
+            function handleResize() {
+                // Set window width/height to state
+                setWidth(
+                    window.innerWidth
+                );
+            }
 
-        // Add event listener
-        window.addEventListener("resize", handleResize);
+            // Add event listener
+            window.addEventListener("resize", handleResize);
 
-        // Call handler right away so state gets updated with initial window size
-        handleResize();
+            // Call handler right away so state gets updated with initial window size
+            handleResize();
 
-        // Remove event listener on cleanup
-        return () => window.removeEventListener("resize", handleResize);
-    }, []); // Empty array ensures that effect is only run on mount
-    return width;
-}
+            // Remove event listener on cleanup
+            return () => window.removeEventListener("resize", handleResize);
+        }, []); // Empty array ensures that effect is only run on mount
+        return width;
+    }
 
-// let x = windowSize
+    // let x = windowSize
 
-// console.log(props.count, props.project)
-if (props.count % 2 !== 0 && width > 700) {
-    // console.log('triggered')
-    // return (
-    //     <div className="col-sm-12 col-lg-10 portCard m-3">
-    //         <div className="row h-100 bg-secondary rounded bg-opacity-25">
-    //             {/* <div className="col d-flex justify-content-center container">
-    //                 <div className="row text-center">
-    //                     <div className="col-12">
-    //                         <h1 className='headFont'>{project.name}</h1>
-    //                     </div>
-    //                     <div className="col-12">
-    //                         <div>{project.description}</div>
-    //                     </div>
-    //                     <div className="col-12">
-    //                         <a href={project.link}><button className="btn btn-secondary m-2">View live project</button></a>
-    //                         <a href={project.source}><button className="btn btn-secondary m-2">View source code</button></a>
-    //                     </div>
-    //                     <div className="col-12">
+    // console.log(props.count, props.project)
+    if (props.count % 2 !== 0 && width > 700) {
+        // console.log('triggered')
+        // return (
+        //     <div className="col-sm-12 col-lg-10 portCard m-3">
+        //         <div className="row h-100 bg-secondary rounded bg-opacity-25">
+        //             {/* <div className="col d-flex justify-content-center container">
+        //                 <div className="row text-center">
+        //                     <div className="col-12">
+        //                         <h1 className='headFont'>{project.name}</h1>
+        //                     </div>
+        //                     <div className="col-12">
+        //                         <div>{project.description}</div>
+        //                     </div>
+        //                     <div className="col-12">
+        //                         <a href={project.link}><button className="btn btn-secondary m-2">View live project</button></a>
+        //                         <a href={project.source}><button className="btn btn-secondary m-2">View source code</button></a>
+        //                     </div>
+        //                     <div className="col-12">
 
-    //                         {project.stack.map((item) =>  (
-    //                                 <img title={item.name} className='icons m-1' src={item.icon} alt={item.name}></img>
-    //                             )
-    //                         )}
-    //                     </div>
-    //                 </div>
-    //             </div> */}
-    //             {/* <div className="col-sm-12 col-md-5 col-lg-5 m-3">
-    //                 <div className={`${baseClasses + ' ' + project.class}`}>
+        //                         {project.stack.map((item) =>  (
+        //                                 <img title={item.name} className='icons m-1' src={item.icon} alt={item.name}></img>
+        //                             )
+        //                         )}
+        //                     </div>
+        //                 </div>
+        //             </div> */}
+        //             {/* <div className="col-sm-12 col-md-5 col-lg-5 m-3">
+        //                 <div className={`${baseClasses + ' ' + project.class}`}>
 
-    //                 </div>
-    //             </div> */}
+        //                 </div>
+        //             </div> */}
 
-    //         </div>
-    //     </div>
-    // )
-    return (
-        <div className="col-12 portColor2 portCard">
-            <div className="row d-flex justify-content-center mt-4">
-                <ProjectInfo project={project} />
-                <ProjectImage project={project} />
+        //         </div>
+        //     </div>
+        // )
+        return (
+            <div className="col-12 portColor2 portCard">
+                <div className="row d-flex justify-content-center mt-4">
+                    <ProjectInfo project={project} />
+                    <ProjectImage project={project} />
+                </div>
             </div>
-        </div>
 
-    )
-} else {
-    // return (
-    //     <div className="col-sm-12 col-lg-10 portCard m-3">
-    //         <div className="row h-100 bg-secondary rounded bg-opacity-25">
-    //             <div className="col-sm-12 col-md-5 col-lg-5 m-3">
-    //                 <div className={`${baseClasses + ' ' + project.class}`}>
-    //                     {/* <div className="d-flex flex-column text-white text-shadow-1">
+        )
+    } else {
+        // return (
+        //     <div className="col-sm-12 col-lg-10 portCard m-3">
+        //         <div className="row h-100 bg-secondary rounded bg-opacity-25">
+        //             <div className="col-sm-12 col-md-5 col-lg-5 m-3">
+        //                 <div className={`${baseClasses + ' ' + project.class}`}>
+        //                     {/* <div className="d-flex flex-column text-white text-shadow-1">
 
-    //                     <ul className="d-flex list-unstyled mt-auto">
-    //                         <li className="me-auto">
-    //                             <a href={project.link}><button className="btn btn-secondary">View project</button></a>
-    //                         </li>
-    //                     </ul>
-    //                 </div> */}
-    //                 </div>
-    //             </div>
-    //             <div className="col d-flex justify-content-center container">
-    //                 <div className="row text-center">
-    //                     <div className="col-12">
-    //                         <h1 className='headFont'>{project.name}</h1>
-    //                     </div>
-    //                     <div className="col-12">
-    //                         <div>{project.description}</div>
-    //                     </div>
-    //                     <div className="col-12">
-    //                         <a href={project.link}><button className="btn btn-secondary m-2">View live project</button></a>
-    //                         <a href={project.source}><button className="btn btn-secondary m-2">View source code</button></a>
-    //                     </div>
-    //                     <div className="col-12">
+        //                     <ul className="d-flex list-unstyled mt-auto">
+        //                         <li className="me-auto">
+        //                             <a href={project.link}><button className="btn btn-secondary">View project</button></a>
+        //                         </li>
+        //                     </ul>
+        //                 </div> */}
+        //                 </div>
+        //             </div>
+        //             <div className="col d-flex justify-content-center container">
+        //                 <div className="row text-center">
+        //                     <div className="col-12">
+        //                         <h1 className='headFont'>{project.name}</h1>
+        //                     </div>
+        //                     <div className="col-12">
+        //                         <div>{project.description}</div>
+        //                     </div>
+        //                     <div className="col-12">
+        //                         <a href={project.link}><button className="btn btn-secondary m-2">View live project</button></a>
+        //                         <a href={project.source}><button className="btn btn-secondary m-2">View source code</button></a>
+        //                     </div>
+        //                     <div className="col-12">
 
-    //                         {project.stack.map((item) =>  (
-    //                                 <img title={item.name} className='icons m-1' src={item.icon} alt={item.name}></img>
-    //                             )
-    //                         )}
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
-    return (
-        <div className="col-12 portColor2 portCard">
-            <div className="row d-flex justify-content-center mt-4">
-                <ProjectImage project={project} />
-                <ProjectInfo project={project} />
+        //                         {project.stack.map((item) =>  (
+        //                                 <img title={item.name} className='icons m-1' src={item.icon} alt={item.name}></img>
+        //                             )
+        //                         )}
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>
+        // )
+        return (
+            <div className="col-12 portColor2 portCard">
+                <div className="row d-flex justify-content-center mt-4">
+                    <ProjectImage project={project} />
+                    <ProjectInfo project={project} />
+                </div>
             </div>
-        </div>
-    )
-}
+        )
+    }
 
 
 };
@@ -237,31 +229,31 @@ if (props.count % 2 !== 0 && width > 700) {
 
 
 const projects = [ // Project data
-{ // Cocktail Generator
-    name: 'Cocktail Generator',
-    class: 'cocktail-generator',
-    link: 'https://cocktail-generator.vercel.app/',
-    source: 'https://github.com/Joshtdale/cocktail-generator',
-    stack: [
-        {
-            icon: ReactJS,
-            name: 'ReactJS'
-        },
-        {
-            icon: JavaScript,
-            name: 'JavaScript'
-        },
-        {
-            icon: Bootstrap,
-            name: 'Bootstrap'
-        },
-        {
-            icon: CSS,
-            name: 'CSS'
-        },
-    ],
-    description: 'Sort of a sandbox project for learning Next and trying out some CSS tricks with the navbar I also try out some modal animation using Framer Motion and error handling with react-hot-toast'
-},
+    { // Cocktail Generator
+        name: 'Cocktail Generator',
+        class: 'cocktail-generator',
+        link: 'https://cocktail-generator.vercel.app/',
+        source: 'https://github.com/Joshtdale/cocktail-generator',
+        stack: [
+            {
+                icon: ReactJS,
+                name: 'ReactJS'
+            },
+            {
+                icon: JavaScript,
+                name: 'JavaScript'
+            },
+            {
+                icon: Bootstrap,
+                name: 'Bootstrap'
+            },
+            {
+                icon: CSS,
+                name: 'CSS'
+            },
+        ],
+        description: 'Sort of a sandbox project for learning Next and trying out some CSS tricks with the navbar I also try out some modal animation using Framer Motion and error handling with react-hot-toast'
+    },
     { // ChatR
         name: 'ChatR',
         class: 'chatr',

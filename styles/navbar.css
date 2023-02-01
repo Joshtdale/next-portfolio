@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Lato:wght@100;400&display=swap');
+
+
 header {
     color: rgba(255, 255, 255, 0.9);
 
@@ -75,4 +78,8 @@ header {
 
 .nav a:hover {
     color: (74, 99, 80);
+}
+
+.headFont {
+    font-family: 'Cinzel', serif;
 }
