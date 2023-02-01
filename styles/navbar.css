@@ -5,11 +5,15 @@ header {
     color: rgba(255, 255, 255, 0.9);
 
 }
-/* 
-.navbar-color {
-    background-color: rgba(54, 55, 58, 0.9);
 
-} */
+.navbar-color {
+    /* background-color: rgba(54, 55, 58, 0.9); */
+    background-color: black;
+    /* transform: translate(100%, 0%); */
+    transition: 0.25s;
+    opacity: 0.9;
+
+}
 
 .navContainer {
     width: 80vw;
@@ -45,29 +49,34 @@ header {
 .nav a::before,
 .nav a::after {
     content: '';
-    height: 14px;
-    width: 14px;
+    height: 30px;
+    width: 30px;
     position: absolute;
+    top: 13px;
     transition: all .35s ease;
     opacity: 0;
+
 }
 
 .nav a::before {
     content: '';
     right: 0;
-    top: 0;
-    border-top: 3px solid rgb(107, 133, 113);
-    border-right: 3px solid rgb(74, 99, 80);
+    /* top: 0; */
+    /* border-top: 3px solid rgb(107, 133, 113); */
+    border-right: 1px solid rgb(74, 99, 80);
     transform: translate(-100%, 50%);
+    /* border-radius: 3px; */
+
 }
 
 .nav a:after {
     content: '';
     left: 0;
-    bottom: 0;
-    border-bottom: 3px solid rgb(107, 133, 113);
-    border-left: 3px solid rgb(74, 99, 80);
-    transform: translate(100%, -50%)
+    /* bottom: 0; */
+    /* border-bottom: 3px solid rgb(107, 133, 113); */
+    border-left: 1px solid rgb(74, 99, 80);
+    transform: translate(100%, -50%);
+    /* border-radius: 3px; */
 }
 
 .nav a:hover:before,
