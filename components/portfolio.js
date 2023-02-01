@@ -137,7 +137,7 @@ function useWindowSize() {
 
 // console.log(props.count, props.project)
 if (props.count % 2 !== 0 && width > 700) {
-    console.log('triggered')
+    // console.log('triggered')
     // return (
     //     <div className="col-sm-12 col-lg-10 portCard m-3">
     //         <div className="row h-100 bg-secondary rounded bg-opacity-25">
@@ -172,7 +172,7 @@ if (props.count % 2 !== 0 && width > 700) {
     //     </div>
     // )
     return (
-        <div className="col-sm-12 col-lg-10 portCard m-3">
+        <div className="col-12 portColor2 portCard">
             <div className="row d-flex justify-content-center mt-4">
                 <ProjectInfo project={project} />
                 <ProjectImage project={project} />
@@ -221,7 +221,7 @@ if (props.count % 2 !== 0 && width > 700) {
     //     </div>
     // )
     return (
-        <div className="col-sm-12 col-lg-10 portCard m-3">
+        <div className="col-12 portColor1 portCard">
             <div className="row d-flex justify-content-center mt-4">
                 <ProjectImage project={project} />
                 <ProjectInfo project={project} />
