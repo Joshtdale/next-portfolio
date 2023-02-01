@@ -9,32 +9,33 @@ import Postgres from '../styles/images/stackIcons/postgres.png';
 import Bootstrap from '../styles/images/stackIcons/bootstrap.svg';
 import django from '../styles/images/stackIcons/django.png';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 
 let count = 0 // Counter for project card mapping
 
-function IFrameCard(props) {
+// function IFrameCard(props) {
 
-    const baseClasses = 'card portfolioCards card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg'
+//     const baseClasses = 'card portfolioCards card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg'
 
-    return (
-        <div className="col portCard">
-            <div className={`${baseClasses}`}>
-                <div className="d-flex flex-column text-white text-shadow-1">
-                    <iframe className="embed-responsive-item portfolioIframe" src={props.link}>
+//     return (
+//         <div className="col portCard">
+//             <div className={`${baseClasses}`}>
+//                 <div className="d-flex flex-column text-white text-shadow-1">
+//                     <iframe className="embed-responsive-item portfolioIframe" src={props.link}>
 
-                        <ul className="d-flex list-unstyled mt-auto">
-                            <li className="me-auto">
-                                <a href={props.link}><button className="btn btn-secondary">View project</button></a>
-                            </li>
+//                         <ul className="d-flex list-unstyled mt-auto">
+//                             <li className="me-auto">
+//                                 <a href={props.link}><button className="btn btn-secondary">View project</button></a>
+//                             </li>
 
-                        </ul>
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    )
-};
+//                         </ul>
+//                     </iframe>
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// };
 
 function ProjectImage(props) {
     const baseClasses = 'card portfolioCards cardHeight card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg'
@@ -62,11 +63,11 @@ function ProjectInfo(props) {
                 </div>
                 <div className="col-12">
                     {project.link &&
-                        <a href={project.link} target='blank_'><button className="btn btn-secondary m-2">View live project</button></a>
+                        <a href={project.link} target='blank_'><button className="btn portfolioBtn m-2">View live project</button></a>
 
                     }
 
-                    <a href={project.source} target='blank_'><button className="btn btn-secondary m-2">View source code</button></a>
+                    <a href={project.source} target='blank_'><button className="btn portfolioBtn m-2">View source code</button></a>
                 </div>
                 <div className="col-12">
 
@@ -221,7 +222,7 @@ if (props.count % 2 !== 0 && width > 700) {
     //     </div>
     // )
     return (
-        <div className="col-12 portColor1 portCard">
+        <div className="col-12 portColor2 portCard">
             <div className="row d-flex justify-content-center mt-4">
                 <ProjectImage project={project} />
                 <ProjectInfo project={project} />
@@ -236,6 +237,31 @@ if (props.count % 2 !== 0 && width > 700) {
 
 
 const projects = [ // Project data
+{ // Cocktail Generator
+    name: 'Cocktail Generator',
+    class: 'cocktail-generator',
+    link: 'https://cocktail-generator.vercel.app/',
+    source: 'https://github.com/Joshtdale/cocktail-generator',
+    stack: [
+        {
+            icon: ReactJS,
+            name: 'ReactJS'
+        },
+        {
+            icon: JavaScript,
+            name: 'JavaScript'
+        },
+        {
+            icon: Bootstrap,
+            name: 'Bootstrap'
+        },
+        {
+            icon: CSS,
+            name: 'CSS'
+        },
+    ],
+    description: 'Sort of a sandbox project for learning Next and trying out some CSS tricks with the navbar I also try out some modal animation using Framer Motion and error handling with react-hot-toast'
+},
     { // ChatR
         name: 'ChatR',
         class: 'chatr',

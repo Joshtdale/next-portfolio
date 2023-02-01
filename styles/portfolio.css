@@ -24,6 +24,12 @@
     /* 2px 4px 20px hsla(0, 0%, 0%, .2); */
 }
 
+
+.portfolioBtn{
+    background-color: var(--main-green) !important;
+    color: #F5F5F5 !important;
+}
+
 .portfolioIframe {
     height: 30vh;
     /* width: 100%; */
@@ -68,6 +74,10 @@
     background-image: url('./images/chatr.png');
 }
 
+.cocktail-generator{
+    background-image: url('./images/cocktail-generator.png');
+}
+
 .cardHeight{
     height: 40vh !important;
 }
@@ -93,7 +103,7 @@
 
 .portColor2{
     background-color: black;
-    color: rgba(255, 255, 255, 0.9);
+    color: #F5F5F5;
 }
 
 
