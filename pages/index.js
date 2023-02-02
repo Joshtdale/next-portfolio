@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Portfolio from '@/components/portfolio'
+import { Link } from "react-scroll";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -33,6 +34,8 @@ export default function Home() {
                     </div>
                 </div>
                 <Portfolio />
+
+
 
             </div>
             {/* <div className="row home-bottom">

@@ -1,6 +1,6 @@
 .portfolioContainer {
     margin-top: 23vh;
-    /* background-color: white; */
+    background-color: var(--main-black);
 }
 
 .portfolioCards {
@@ -104,8 +104,9 @@
 }
 
 .portColor2{
-    background-color: black;
-    color: #F5F5F5;
+    /* background-color: black; */
+    color: var(--text-color);
+    
 }
 
 

@@ -1,7 +1,8 @@
 // import '/workspace/next-portfolio/styles/globals.css'
 // import bootstrap from 'bootstrap'
 import { useState, useEffect } from "react"
-import Link from "next/link"
+// import Link from "next/link"
+import { Link } from "react-scroll";
 import { motion } from "framer-motion"
 
 let buttonWhileHover = { opacity: 1, scale: 1.1 }
@@ -67,12 +68,12 @@ function Navbar(props) {
                             <Link href="/"><motion.button
                                 whileHover={buttonWhileHover}
                                 whileTap={buttonWhileTap}
-                                className="btn px-2 text-white headFont">
-                                <h3>Josh Dale</h3>
+                                className="btn px-2 text-white">
+                                <h3 className="headFont" >Josh Dale</h3>
                             </motion.button></Link>
                         </li>
                         <li className='nav-item'>
-                            <Link href='portfolio'><motion.button
+                            <Link smooth spy to="portfolio"><motion.button
                                 whileHover={buttonWhileHover}
                                 whileTap={buttonWhileTap}
                                 className="btn px-2 text-white mt-1">

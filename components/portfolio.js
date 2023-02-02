@@ -490,7 +490,10 @@ const projects = [ // Project data
 
 function Portfolio() {
     return (
-        <div className='portfolioContainer'>
+        <div id='portfolio' className='portfolioContainer'>
+            <div className="row sectionHeader">
+                <div className="col headFont d-flex justify-content-center align-items-center">Projects</div>
+            </div>
             <div className='row d-flex justify-content-center'>
                 {projects.map((item) => {
                     count += 1
